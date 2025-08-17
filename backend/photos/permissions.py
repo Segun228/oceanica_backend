@@ -46,7 +46,7 @@ class PhotoIsAdminOrDebugOrReadOnly(permissions.BasePermission):
             return False
 
 
-        if (user.is_staff and str(user.telegram_id) in admins):
+        if (user.is_staff or token in admins):
             return True
 
         allowed_fields = {"photos"}
