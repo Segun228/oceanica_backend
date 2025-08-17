@@ -10,11 +10,15 @@ import logging
 load_dotenv()
 
 
-admin_one = os.getenv("ADMIN_1")
-admin_two = os.getenv("ADMIN_2")
+admins = (os.getenv("ADMIN_1"))
+if not admins:
+    raise ValueError("Empty admin list given")
+else:
+    admins = list(map(str.strip, admins.split("_")))
+
 debug = os.getenv("DEBUG", "False").lower() == "true"
 
-admins = [admin_one, admin_two]
+
 
 class IsAdminOrDebugOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
