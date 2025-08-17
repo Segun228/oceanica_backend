@@ -10,7 +10,7 @@ import logging
 load_dotenv()
 
 
-admins = (os.getenv("ADMIN_1"))
+admins = (os.getenv("ADMINS"))
 if not admins:
     raise ValueError("Empty admin list given")
 else:
