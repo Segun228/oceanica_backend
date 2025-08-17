@@ -4,11 +4,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-admin_one = os.getenv("ADMIN_1")
-admin_two = os.getenv("ADMIN_2")
-debug = os.getenv("DEBUG", "False").lower() == "true"
+admins = (os.getenv("ADMINS"))
+if not admins:
+    raise ValueError("Empty admin list given")
+else:
+    admins = list(map(str.strip, admins.split("_")))
 
-admins = [admin_one, admin_two]
+debug = os.getenv("DEBUG", "False").lower() == "true"
 
 
 class PhotoIsAdminOrDebugOrReadOnly(permissions.BasePermission):
