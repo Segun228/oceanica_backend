@@ -23,7 +23,8 @@ class Post(models.Model):
     description = models.CharField(max_length=1000, blank=True, default="")
     price = models.IntegerField(default=0)
     photos = ArrayField(models.CharField(max_length=100), blank=True, default=list)
-    quantity = models.IntegerField(default=0)
+    weight = models.IntegerField(default=0)
+    country = models.CharField(max_length=1000, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

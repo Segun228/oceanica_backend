@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "api",
     "authentication",
     "photos",
+    "reports",
     'drf_spectacular',
     'drf_spectacular_sidecar',
     "rest_framework",
