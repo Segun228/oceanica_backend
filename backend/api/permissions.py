@@ -33,7 +33,7 @@ class IsAdminOrDebugOrReadOnly(permissions.BasePermission):
             return False
         try:
             user = User.objects.get(telegram_id=header[1])
-            if (user.is_staff and header[1] in admins) or debug:
+            if (user.is_staff and header[1] in admins):
                 return True
         except User.DoesNotExist:
             logging.error("Пользователь с таким Telegram ID не найден.")
