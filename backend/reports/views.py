@@ -38,7 +38,25 @@ class ReplacePostsFile(APIView):
     authentication_classes = [TelegramAuthentication]
     permission_classes = [AllowAny]
     def post(self, request, *args, **kwargs):
-        pass
+        excel_file = request.FILES.get("file")
+        if not excel_file:
+            return Response({"error": "Файл не передан"}, status=400)
+        result = handlers.replace_posts_file(data = excel_file, request= request)
+        if not result:
+            return HttpResponseBadRequest()
+        if result['errors']:
+            return Response(
+                {
+                    "success": result['success'],
+                    "errors": result['errors']
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        else:
+            return Response(
+                {"success": result['success']},
+                status=status.HTTP_200_OK
+            )
 
 
 class GetPostsFile(APIView):

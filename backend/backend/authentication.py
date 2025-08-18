@@ -20,7 +20,7 @@ class TelegramAuthentication(BaseAuthentication):
         if not telegram_id.strip() or not telegram_id.isdigit():
             logging.error("Telegram id is invalid")
             return None
-        telegram_id = int(telegram_id.strip())
+        telegram_id = str(telegram_id.strip())
         User = get_user_model()
         try:
             user = User.objects.get(telegram_id=telegram_id)
