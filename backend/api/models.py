@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, null=False, blank=False, default="Раздел")
+    name = models.CharField(max_length=100, null=False, blank=False, default="Раздел", unique= True)
     description = models.CharField(max_length=1000, null=True, blank=False, default="Описание")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
